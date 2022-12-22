@@ -28,7 +28,7 @@ class HomePage extends StatelessWidget {
         children: [
           FloatingActionButton(
             onPressed: () {
-              counterProvider.decrement();
+              context.read<CounterCubit>().decrement();
             },
             child: const Icon(
               Icons.remove,
@@ -36,7 +36,7 @@ class HomePage extends StatelessWidget {
           ),
           FloatingActionButton(
             onPressed: () {
-              counterProvider.increment();
+              context.read<CounterCubit>().increment();
             },
             child: const Icon(
               Icons.add,
