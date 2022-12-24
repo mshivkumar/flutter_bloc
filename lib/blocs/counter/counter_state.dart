@@ -1,7 +1,9 @@
-part of 'counter_cubit.dart';
+part of 'counter_bloc.dart';
 
 class CounterState extends Equatable {
   final int counter;
+
+//<editor-fold desc="Data Methods">
 
   const CounterState({
     required this.counter,
