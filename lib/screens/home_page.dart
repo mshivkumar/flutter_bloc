@@ -1,48 +1,24 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:testapp/screens/cubits/counter/counter_cubit.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var counterProvider = BlocProvider.of<CounterCubit>(context);
-
     return Scaffold(
-      body: BlocConsumer<CounterCubit, CounterState>(
-        listener: (context, state) {
-          // TODO: implement listener
-        },
-        builder: (context, state) {
-          return Center(
-            child: Text(
-              '${state.counter}',
-              style: const TextStyle(fontSize: 52),
-            ),
-          );
-        },
+      appBar: AppBar(
+        title: const Text('Theme app'),
       ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            onPressed: () {
-              context.read<CounterCubit>().decrement();
-            },
-            child: const Icon(
-              Icons.remove,
-            ),
-          ),
-          FloatingActionButton(
-            onPressed: () {
-              context.read<CounterCubit>().increment();
-            },
-            child: const Icon(
-              Icons.add,
-            ),
-          )
-        ],
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            final int randInt = Random().nextInt(10);
+            print('Random number: $randInt');
+          },
+          child: const Text('Change Theme.'),
+        ),
       ),
     );
   }
