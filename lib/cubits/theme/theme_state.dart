@@ -1,4 +1,4 @@
-part of 'theme_bloc.dart';
+part of 'theme_cubit.dart';
 
 enum AppTheme { light, dark }
 
@@ -15,7 +15,7 @@ class ThemeState extends Equatable {
   });
 
   factory ThemeState.initial() {
-    return const ThemeState();
+    return const ThemeState(appTheme: AppTheme.light);
   }
 
   @override
@@ -43,7 +43,7 @@ class ThemeState extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
-      'appTheme': this.appTheme,
+      'appTheme': appTheme,
     };
   }
 
