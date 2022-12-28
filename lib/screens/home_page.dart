@@ -1,6 +1,9 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../cubits/theme/theme_cubit.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -16,6 +19,7 @@ class HomePage extends StatelessWidget {
           onPressed: () {
             final int randInt = Random().nextInt(10);
             print('Random number: $randInt');
+            context.read<ThemeCubit>().changeTheme(randInt: randInt);
           },
           child: const Text('Change Theme.'),
         ),
