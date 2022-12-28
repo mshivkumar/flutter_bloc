@@ -7,11 +7,11 @@ abstract class ThemeEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class ChangeTheme extends ThemeEvent {
+class ChangeThemeEvent extends ThemeEvent {
   final int randInt;
 
 
-  const ChangeTheme({required this.randInt});
+  const ChangeThemeEvent({required this.randInt});
 
   @override
   String toString() {
