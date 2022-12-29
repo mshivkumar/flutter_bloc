@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:testapp/Counter-Bloc/bloc/counter/counter_bloc.dart';
+import 'package:testapp/Cubit-2-Cubit-Communication/cubit/color/color_cubit.dart';
 import 'package:testapp/Cubit-2-Cubit-Communication/screens/cubit_communication_home_page.dart';
 import 'package:testapp/Theme-Bloc/screens/theme_bloc_home_page.dart';
 import 'package:testapp/Theme-Cubit/screens/theme_cubit_home_page.dart';
@@ -8,6 +9,7 @@ import 'package:testapp/Theme-Cubit/screens/theme_cubit_home_page.dart';
 import 'Counter-Bloc/screens/counter_bloc_home_page.dart';
 import 'Counter-Cubit/cubits/counter/counter_cubit.dart';
 import 'Counter-Cubit/screens/counter_cubit_home_page.dart';
+import 'Cubit-2-Cubit-Communication/cubit/color_counter/color_counter_cubit.dart';
 import 'Theme-Bloc/bloc/theme/theme_bloc.dart' as themeBloc;
 import 'Theme-Cubit/cubit/theme/theme_cubit.dart';
 import 'home_page.dart';
@@ -28,6 +30,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => CounterBloc()),
         BlocProvider(create: (context) => ThemeCubit()),
         BlocProvider(create: (context) => themeBloc.ThemeBloc()),
+        BlocProvider(create: (context) => ColorCubit()),
+        BlocProvider(
+            create: (context) =>
+                ColorCounterCubit(colorCubit: context.read<ColorCubit>())),
       ],
       child: Builder(builder: (context) {
         return MaterialApp(
