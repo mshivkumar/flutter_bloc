@@ -10,5 +10,12 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
     on<IncrementCounterEvent>((event, emit) {
       emit(state.copyWith(counter: state.counter + 1));
     });
+
+    on<DecrementCounterEvent>(_decrementCounter);
+
+    void _decrementCounter(
+        DecrementCounterEvent event, Emitter<CounterState> emit) {
+      emit(state.copyWith(counter: state.counter - 1));
+    }
   }
 }
