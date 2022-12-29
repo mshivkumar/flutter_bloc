@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import 'Counter-Bloc/screens/counter_bloc_home_page.dart';
 import 'Counter-Cubit/cubits/counter/counter_cubit.dart';
 import 'Counter-Cubit/screens/counter_cubit_home_page.dart';
 import 'home_page.dart';
@@ -23,6 +24,7 @@ class MyApp extends StatelessWidget {
         home: const Homepage(),
         routes: {
           CounterCubitHomePage.routeName: (ctx) => const CounterCubitHomePage(),
+          CounterBlocHomePage.routeName: (ctx) => const CounterBlocHomePage(),
         },
       ),
     );

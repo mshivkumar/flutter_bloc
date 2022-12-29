@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:testapp/Counter-Cubit/screens/counter_cubit_home_page.dart';
 
+import 'Counter-Bloc/screens/counter_bloc_home_page.dart';
+
 class Homepage extends StatelessWidget {
   const Homepage({Key? key}) : super(key: key);
 
@@ -20,6 +22,14 @@ class Homepage extends StatelessWidget {
                   onTap: () {
                     Navigator.of(context)
                         .pushNamed(CounterCubitHomePage.routeName);
+                  },
+                ),
+                ListTile(
+                  title: const Text('Counter-Bloc'),
+                  trailing: const Icon(Icons.navigate_next),
+                  onTap: () {
+                    Navigator.of(context)
+                        .pushNamed(CounterBlocHomePage.routeName);
                   },
                 ),
               ],
