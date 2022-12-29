@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../bloc/counter/counter_bloc.dart';
 
 class CounterBlocHomePage extends StatelessWidget {
   static const routeName = '/counter-bloc-home-page';
@@ -11,10 +14,10 @@ class CounterBlocHomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Counter Bloc'),
       ),
-      body: const Center(
+      body: Center(
         child: Text(
-          '0',
-          style: TextStyle(fontSize: 52),
+          '${context.watch<CounterBloc>().state.counter}',
+          style: const TextStyle(fontSize: 52),
         ),
       ),
       floatingActionButton: Row(
@@ -22,11 +25,15 @@ class CounterBlocHomePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             FloatingActionButton(
-              onPressed: () {},
+              onPressed: () {
+                context.read<CounterBloc>().add(DecrementCounterEvent());
+              },
               child: const Icon(Icons.remove),
             ),
             FloatingActionButton(
-              onPressed: () {},
+              onPressed: () {
+                context.read<CounterBloc>().add(IncrementCounterEvent());
+              },
               child: const Icon(Icons.add),
             )
           ]),
