@@ -8,6 +8,7 @@ import 'package:testapp/Theme-Cubit/screens/theme_cubit_home_page.dart';
 import 'Counter-Bloc/screens/counter_bloc_home_page.dart';
 import 'Counter-Cubit/cubits/counter/counter_cubit.dart';
 import 'Counter-Cubit/screens/counter_cubit_home_page.dart';
+import 'Theme-Bloc/bloc/theme/theme_bloc.dart' as themeBloc;
 import 'Theme-Cubit/cubit/theme/theme_cubit.dart';
 import 'home_page.dart';
 
@@ -26,11 +27,13 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => CounterCubit()),
         BlocProvider(create: (context) => CounterBloc()),
         BlocProvider(create: (context) => ThemeCubit()),
+        BlocProvider(create: (context) => themeBloc.ThemeBloc()),
       ],
       child: Builder(builder: (context) {
         return MaterialApp(
           title: 'Flutter Demo',
-          theme: context.watch<ThemeCubit>().state.appTheme == AppTheme.light
+          theme: context.watch<themeBloc.ThemeBloc>().state.appTheme ==
+                  themeBloc.AppTheme.light
               ? ThemeData.light()
               : ThemeData.dark(),
           //ThemeData.light(),
