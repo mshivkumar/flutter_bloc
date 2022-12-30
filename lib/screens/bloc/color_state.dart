@@ -1,12 +1,15 @@
-part of 'color_cubit.dart';
+part of 'color_bloc.dart';
 
-class ColorState {
+class ColorState extends Equatable {
   final Color color;
+
+  @override
+  List<Object> get props => [color];
 
 //<editor-fold desc="Data Methods">
 
   const ColorState({
-    this.color = Colors.red,
+    required this.color,
   });
 
   factory ColorState.initial() {
