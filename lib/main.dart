@@ -17,9 +17,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ColorBloc()),
-        BlocProvider(
-            create: (context) =>
-                CounterBloc(colorBloc: context.read<ColorBloc>())),
+        BlocProvider(create: (context) => CounterBloc()),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
