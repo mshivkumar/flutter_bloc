@@ -21,9 +21,7 @@ class MyApp extends StatelessWidget {
           create: (context) => ColorCubit(),
         ),
         BlocProvider(
-          create: (context) => CounterCubit(
-            colorCubit: context.read<ColorCubit>(),
-          ),
+          create: (context) => CounterCubit(),
         ),
       ],
       child: MaterialApp(
