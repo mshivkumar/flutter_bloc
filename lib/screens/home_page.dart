@@ -32,14 +32,16 @@ class _HomePageState extends State<HomePage> {
                   await Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ShowCounter()),
+                        builder: (_) => BlocProvider.value(
+                            value: context.read<CounterCubit>(),
+                            child: const ShowCounter())),
                   );
                 },
                 child: const Text('Show Counter'),
               ),
               ElevatedButton(
                 onPressed: () {
-                  context.read<CounterCubit>().incrementCounter();
+                  BlocProvider.of<CounterCubit>(context).incrementCounter();
                 },
                 child: const Text('Increment Counter'),
               ),

@@ -12,9 +12,13 @@ class ShowCounter extends StatelessWidget {
         title: const Text('Show Counter'),
       ),
       body: Center(
-        child: Text(
-          '${context.watch<CounterCubit>().state.counter}',
-          style: const TextStyle(fontSize: 52),
+        child: BlocBuilder<CounterCubit, CounterState>(
+          builder: (context, state) {
+            return Text(
+              '${state.counter}',
+              style: const TextStyle(fontSize: 52),
+            );
+          },
         ),
       ),
     );
