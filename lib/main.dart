@@ -26,11 +26,18 @@ class _MyAppState extends State<MyApp> {
       title: 'Flutter Demo',
       theme: ThemeData(primarySwatch: Colors.blue),
       initialRoute: HomePage.routeName,
-      routes: {
-        HomePage.routeName: (ctx) =>
-            BlocProvider.value(value: _counterCubit, child: const HomePage()),
-        ShowCounter.routeName: (ctx) => BlocProvider.value(
-            value: _counterCubit, child: const ShowCounter()),
+      onGenerateRoute: (RouteSettings settings) {
+        switch (settings.name) {
+          case HomePage.routeName:
+            return MaterialPageRoute(
+              builder: (context) => BlocProvider.value(
+                  value: _counterCubit, child: const HomePage()),
+            );
+          case ShowCounter.routeName:
+            return MaterialPageRoute(
+                builder: (context) => BlocProvider.value(
+                    value: _counterCubit, child: const ShowCounter()));
+        }
       },
     );
   }
