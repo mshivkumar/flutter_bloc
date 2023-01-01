@@ -4,6 +4,8 @@ import 'package:testapp/cubits/counter/counter_cubit.dart';
 import 'package:testapp/screens/show_counter.dart';
 
 class HomePage extends StatefulWidget {
+  static const routeName = '/';
+
   const HomePage({Key? key}) : super(key: key);
 
   @override
@@ -29,12 +31,9 @@ class _HomePageState extends State<HomePage> {
             children: [
               ElevatedButton(
                 onPressed: () async {
-                  await Navigator.push(
+                  await Navigator.pushNamed(
                     context,
-                    MaterialPageRoute(
-                        builder: (_) => BlocProvider.value(
-                            value: context.read<CounterCubit>(),
-                            child: const ShowCounter())),
+                    ShowCounter.routeName,
                   );
                 },
                 child: const Text('Show Counter'),
