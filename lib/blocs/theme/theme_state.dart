@@ -1,6 +1,13 @@
 part of 'theme_bloc.dart';
 
-enum AppTheme { light, dark }
+enum AppTheme {
+  light,
+  dark;
+
+  String toJson() => name;
+
+  static AppTheme fromJson(String json) => values.byName(json);
+}
 
 class ThemeState extends Equatable {
   final AppTheme appTheme;
@@ -41,15 +48,27 @@ class ThemeState extends Equatable {
     );
   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'appTheme': appTheme,
-    };
+  // Map<String, dynamic> toJson() {
+  //   return {
+  //     'appTheme': appTheme,
+  //   };
+  // }
+  //
+  // factory ThemeState.fromJson(Map<String, dynamic> json) {
+  //   return ThemeState(
+  //     appTheme: json['appTheme'] as AppTheme,
+  //   );
+  // }
+
+  Map<String, dynamic> toJson() {
+    final result = <String, dynamic>{};
+    result.addAll({'appTheme': appTheme.toJson()});
+    return result;
   }
 
-  factory ThemeState.fromMap(Map<String, dynamic> map) {
+  factory ThemeState.fromJson(Map<String, dynamic> json) {
     return ThemeState(
-      appTheme: map['appTheme'] as AppTheme,
+      appTheme: AppTheme.fromJson(json['appTheme']),
     );
   }
 

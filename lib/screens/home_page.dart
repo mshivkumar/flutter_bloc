@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:testapp/blocs/counter/counter_bloc.dart';
 import 'package:testapp/blocs/theme/theme_bloc.dart';
 
@@ -46,7 +47,9 @@ class HomePage extends StatelessWidget {
           ),
           const SizedBox(width: 10.0),
           FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              HydratedBloc.storage.clear();
+            },
             child: const Icon(
               Icons.delete_forever,
             ),
