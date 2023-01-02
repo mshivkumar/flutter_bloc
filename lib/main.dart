@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:testapp/screens/cubits/counter/counter_cubit.dart';
+import 'package:testapp/blocs/counter/counter_bloc.dart';
+import 'package:testapp/blocs/theme/theme_bloc.dart';
 import 'package:testapp/screens/home_page.dart';
 
 void main() {
@@ -13,14 +14,21 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<CounterCubit>(
-      create: (context) => CounterCubit(),
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const HomePage(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => CounterBloc()),
+        BlocProvider(create: (context) => ThemeBloc()),
+      ],
+      child: Builder(
+        builder: (context) {
+          return MaterialApp(
+            title: 'Flutter Demo',
+            theme: (context.watch<ThemeBloc>().state.appTheme == AppTheme.light)
+                ? ThemeData.light()
+                : ThemeData.dark(),
+            home: const HomePage(),
+          );
+        }
       ),
     );
   }
