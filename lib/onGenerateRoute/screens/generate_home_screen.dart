@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:testapp/unnamed_route/screens/unamed_show_counter_screen.dart';
+import 'package:testapp/onGenerateRoute/cubits/counter/counter_cubit.dart';
 
-import '../cubit/counter/counter_cubit.dart';
+import 'generate_show_counter_screen.dart';
 
-class UnnamedHomePage extends StatelessWidget {
-  static const String routeName = '/unnamed-home-page';
-  const UnnamedHomePage({Key? key}) : super(key: key);
+class onGenerateRouteHomeScreen extends StatelessWidget {
+  static const String routeName = 'on-generate-route-home-page';
+
+  const onGenerateRouteHomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
           appBar: AppBar(
-            title: const Text('Un Named Route'),
+            title: const Text('on Generate Route'),
           ),
           body: Center(
             child: Column(
@@ -21,18 +22,16 @@ class UnnamedHomePage extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
+                    Navigator.pushNamed(
                         context,
-                        MaterialPageRoute(
-                            builder: (_) => BlocProvider.value(
-                                value: context.read<UnnamedCounterCubit>(),
-                                child: const UnnamedShowCounterScreen())));
+                        onGenerateRouteShowCounterScreen.routeName,
+                    );
                   },
                   child: const Text('Show Counter'),
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    context.read<UnnamedCounterCubit>().incrementCounter();
+                    context.read<onGenerateCounterCubit>().incrementCounter();
                   },
                   child: const Text('Increment Counter'),
                 ),

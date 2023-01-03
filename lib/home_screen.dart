@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:testapp/named_route/screens/named_home_screen.dart';
-import 'package:testapp/unnamed_route/cubit/counter/counter_cubit.dart';
-import 'package:testapp/unnamed_route/screens/unnamed_home_page.dart';
+import 'package:testapp/NamedRoute/screens/named_home_screen.dart';
+import 'package:testapp/UnnamedRoute/cubit/counter/counter_cubit.dart';
+import 'package:testapp/UnnamedRoute/screens/unnamed_home_page.dart';
+import 'package:testapp/onGenerateRoute/screens/generate_home_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -41,6 +42,13 @@ class HomeScreen extends StatelessWidget {
                   title: const Text('Named Route'),
                   onTap: () {
                     Navigator.pushNamed(context, NamedHomeScreen.routeName);
+                  },
+                  trailing: const Icon(Icons.navigate_next),
+                ),
+                ListTile(
+                  title: const Text('onGenerate Route'),
+                  onTap: () {
+                    Navigator.pushNamed(context, onGenerateRouteHomeScreen.routeName);
                   },
                   trailing: const Icon(Icons.navigate_next),
                 ),
