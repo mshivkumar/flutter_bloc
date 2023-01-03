@@ -1,6 +1,6 @@
-part of 'counter_bloc.dart';
+part of 'counter_cubit.dart';
 
-class CounterState extends Equatable {
+class UnnamedCounterState extends Equatable {
   final int counter;
 
   @override
@@ -8,18 +8,18 @@ class CounterState extends Equatable {
 
 //<editor-fold desc="Data Methods">
 
-  const CounterState({
+  const UnnamedCounterState({
     required this.counter,
   });
 
-  factory CounterState.initial() {
-    return const CounterState(counter: 0);
+  factory UnnamedCounterState.initial() {
+    return const UnnamedCounterState(counter: 0);
   }
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is CounterState &&
+      (other is UnnamedCounterState &&
           runtimeType == other.runtimeType &&
           counter == other.counter);
 
@@ -31,26 +31,25 @@ class CounterState extends Equatable {
     return 'CounterState{ counter: $counter,}';
   }
 
-  CounterState copyWith({
+  UnnamedCounterState copyWith({
     int? counter,
   }) {
-    return CounterState(
+    return UnnamedCounterState(
       counter: counter ?? this.counter,
     );
   }
 
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toMap() {
     return {
       'counter': counter,
     };
   }
 
-  factory CounterState.fromJson(Map<String, dynamic> json) {
-    return CounterState(
-      counter: json['counter'] as int,
+  factory UnnamedCounterState.fromMap(Map<String, dynamic> map) {
+    return UnnamedCounterState(
+      counter: map['counter'] as int,
     );
   }
-
 
 //</editor-fold>
 }
