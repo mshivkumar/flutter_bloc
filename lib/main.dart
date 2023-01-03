@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:testapp/screens/cubits/counter/counter_cubit.dart';
-import 'package:testapp/screens/home_page.dart';
+import 'package:testapp/EventTransformer/blocs/counter/counter_bloc.dart';
+import 'package:testapp/EventTransformer/screens/event_trans_home_page.dart';
+
+import 'home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,15 +15,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<CounterCubit>(
-      create: (context) => CounterCubit(),
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: const HomePage(),
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
       ),
+      home: const HomePage(),
+      routes: {
+        EventTransformerHomePage.routeName: (ctx) => BlocProvider(
+            create: (BuildContext context) => CounterBloc(),
+            child: const EventTransformerHomePage()),
+      },
     );
   }
 }

@@ -1,7 +1,12 @@
-part of 'counter_cubit.dart';
+part of 'counter_bloc.dart';
 
 class CounterState extends Equatable {
   final int counter;
+
+  @override
+  List<Object> get props => [counter];
+
+//<editor-fold desc="Data Methods">
 
   const CounterState({
     required this.counter,
@@ -36,7 +41,7 @@ class CounterState extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
-      'counter': this.counter,
+      'counter': counter,
     };
   }
 
@@ -45,10 +50,6 @@ class CounterState extends Equatable {
       counter: map['counter'] as int,
     );
   }
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [counter];
 
 //</editor-fold>
 }
