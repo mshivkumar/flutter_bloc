@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart';
 
 part 'counter_event.dart';
 
@@ -9,13 +10,20 @@ part 'counter_state.dart';
 
 class CounterBloc extends Bloc<CounterEvent, CounterState> {
   CounterBloc() : super(CounterState.initial()) {
-    on<CounterEvent>((event, emit) {
+    on<CounterEvent>(
+      (event, emit) {
+        if (event is IncrementCounterEvent) {
+         return  _incrementCounter(event, emit);
+        } else if (event is DecrementCounterEvent) {
+          return _decrementCounter(event, emit);
+        }
+      },
+      transformer: sequential(),
+    );
 
-    });
-
-    on<IncrementCounterEvent>(_incrementCounter);
-
-    on<DecrementCounterEvent>(_decrementCounter);
+    // on<IncrementCounterEvent>(_incrementCounter);
+    //
+    // on<DecrementCounterEvent>(_decrementCounter);
   }
 
   Future<void> _incrementCounter(
