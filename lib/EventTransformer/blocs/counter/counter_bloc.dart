@@ -8,12 +8,14 @@ part 'counter_event.dart';
 
 part 'counter_state.dart';
 
-class CounterBloc extends Bloc<CounterEvent, CounterState> {
-  CounterBloc() : super(CounterState.initial()) {
-    on<CounterEvent>(
+class EventTransformerCounterBloc
+    extends Bloc<EventTransformerCounterEvent, EventTransformerCounterState> {
+  EventTransformerCounterBloc()
+      : super(EventTransformerCounterState.initial()) {
+    on<EventTransformerCounterEvent>(
       (event, emit) {
         if (event is IncrementCounterEvent) {
-         return  _incrementCounter(event, emit);
+          return _incrementCounter(event, emit);
         } else if (event is DecrementCounterEvent) {
           return _decrementCounter(event, emit);
         }
@@ -26,14 +28,14 @@ class CounterBloc extends Bloc<CounterEvent, CounterState> {
     // on<DecrementCounterEvent>(_decrementCounter);
   }
 
-  Future<void> _incrementCounter(
-      IncrementCounterEvent event, Emitter<CounterState> emit) async {
+  Future<void> _incrementCounter(IncrementCounterEvent event,
+      Emitter<EventTransformerCounterState> emit) async {
     await Future.delayed(const Duration(seconds: 4));
     emit(state.copyWith(counter: state.counter + 1));
   }
 
-  Future<void> _decrementCounter(
-      DecrementCounterEvent event, Emitter<CounterState> emit) async {
+  Future<void> _decrementCounter(DecrementCounterEvent event,
+      Emitter<EventTransformerCounterState> emit) async {
     await Future.delayed(const Duration(seconds: 2));
     emit(state.copyWith(counter: state.counter - 1));
   }

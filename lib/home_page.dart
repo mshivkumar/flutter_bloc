@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:testapp/EventTransformer/screens/event_trans_home_page.dart';
+import 'package:testapp/hyderatedBloc/screens/hyderated_home_screen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -22,6 +23,14 @@ class HomePage extends StatelessWidget {
                 onTap: () {
                   Navigator.pushNamed(
                       context, EventTransformerHomePage.routeName);
+                },
+              ),
+              ListTile(
+                title: const Text('Hydrated Bloc'),
+                trailing: const Icon(Icons.navigate_next),
+                onTap: () {
+                  Navigator.pushNamed(
+                      context, HyderatedHomeScreen.routeName);
                 },
               ),
             ],

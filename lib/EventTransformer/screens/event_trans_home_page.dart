@@ -15,7 +15,7 @@ class EventTransformerHomePage extends StatelessWidget {
       ),
       body: Center(
         child: Text(
-          '${context.watch<CounterBloc>().state.counter}',
+          '${context.watch<EventTransformerCounterBloc>().state.counter}',
           style: const TextStyle(fontSize: 52),
         ),
       ),
@@ -25,7 +25,7 @@ class EventTransformerHomePage extends StatelessWidget {
           FloatingActionButton(
             heroTag: 'increment',
             onPressed: () {
-              context.read<CounterBloc>().add(IncrementCounterEvent());
+              context.read<EventTransformerCounterBloc>().add(IncrementCounterEvent());
             },
             child: const Icon(
               Icons.add,
@@ -37,7 +37,7 @@ class EventTransformerHomePage extends StatelessWidget {
           FloatingActionButton(
             heroTag: 'decrement',
             onPressed: () {
-              context.read<CounterBloc>().add(DecrementCounterEvent());
+              context.read<EventTransformerCounterBloc>().add(DecrementCounterEvent());
             },
             child: const Icon(
               Icons.remove,

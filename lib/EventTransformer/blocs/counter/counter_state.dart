@@ -1,6 +1,6 @@
 part of 'counter_bloc.dart';
 
-class CounterState extends Equatable {
+class EventTransformerCounterState extends Equatable {
   final int counter;
 
   @override
@@ -8,18 +8,18 @@ class CounterState extends Equatable {
 
 //<editor-fold desc="Data Methods">
 
-  const CounterState({
+  const EventTransformerCounterState({
     required this.counter,
   });
 
-  factory CounterState.initial() {
-    return const CounterState(counter: 0);
+  factory EventTransformerCounterState.initial() {
+    return const EventTransformerCounterState(counter: 0);
   }
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is CounterState &&
+      (other is EventTransformerCounterState &&
           runtimeType == other.runtimeType &&
           counter == other.counter);
 
@@ -31,10 +31,10 @@ class CounterState extends Equatable {
     return 'CounterState{ counter: $counter,}';
   }
 
-  CounterState copyWith({
+  EventTransformerCounterState copyWith({
     int? counter,
   }) {
-    return CounterState(
+    return EventTransformerCounterState(
       counter: counter ?? this.counter,
     );
   }
@@ -45,8 +45,8 @@ class CounterState extends Equatable {
     };
   }
 
-  factory CounterState.fromMap(Map<String, dynamic> map) {
-    return CounterState(
+  factory EventTransformerCounterState.fromMap(Map<String, dynamic> map) {
+    return EventTransformerCounterState(
       counter: map['counter'] as int,
     );
   }
