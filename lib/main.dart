@@ -63,8 +63,6 @@ class _MyAppState extends State<MyApp> {
             value: _namedCounterCubit, child: const NamedHomeScreen()),
         NamedShowCounterScreen.routeName: (ctx) => BlocProvider.value(
             value: _namedCounterCubit, child: const NamedShowCounterScreen()),
-        onGenerateRouteHomeScreen.routeName: (ctx) =>
-            const onGenerateRouteHomeScreen(),
       },
     );
   }
