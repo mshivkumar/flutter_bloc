@@ -42,7 +42,7 @@ class HydratedCounterBloc
 
   @override
   Map<String, dynamic>? toJson(HydratedCounterState state) {
-    print('CounterState: $state');
+    print('CounterState to storage: $state');
     final Map<String, dynamic> counterJson = state.toJson();
     print('CounterState to json: $counterJson');
     return counterJson;

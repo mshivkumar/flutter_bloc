@@ -4,6 +4,9 @@ enum AppTheme {
   light,
   dark;
 
+  String toJson() => name;
+
+  static AppTheme fromJson(String json) => values.byName(json);
 }
 
 class HydratedThemeState extends Equatable {
@@ -45,15 +48,15 @@ class HydratedThemeState extends Equatable {
     );
   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'appTheme': appTheme,
-    };
+  Map<String, dynamic> toJson() {
+    final result = <String, dynamic>{};
+    result.addAll({'appTheme': appTheme.toJson()});
+    return result;
   }
 
-  factory HydratedThemeState.fromMap(Map<String, dynamic> map) {
+  factory HydratedThemeState.fromJson(Map<String, dynamic> json) {
     return HydratedThemeState(
-      appTheme: map['appTheme'] as AppTheme,
+      appTheme: AppTheme.fromJson(json['appTheme']),
     );
   }
 
