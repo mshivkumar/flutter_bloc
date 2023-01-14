@@ -12,6 +12,8 @@ class TodoListCubit extends Cubit<TodoListState> {
     final Todo todo = Todo(desc: desc);
     final List<Todo> newTodosList = [...state.todos, todo];
     emit(state.copyWith(todos: newTodosList));
+    print('List of todos after adding:');
+    print(state);
   }
 
   void editTodo({required String id, required String desc}) {
