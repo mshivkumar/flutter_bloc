@@ -3,8 +3,6 @@ part of 'todo_search_cubit.dart';
 class TodoSearchState extends Equatable {
   final String searchString;
 
-//<editor-fold desc="Data Methods">
-
   const TodoSearchState({
     required this.searchString,
   });
@@ -36,20 +34,6 @@ class TodoSearchState extends Equatable {
     );
   }
 
-  Map<String, dynamic> toMap() {
-    return {
-      'searchString': searchString,
-    };
-  }
-
-  factory TodoSearchState.fromMap(Map<String, dynamic> map) {
-    return TodoSearchState(
-      searchString: map['searchString'] as String,
-    );
-  }
-
   @override
   List<Object> get props => [searchString];
-
-//</editor-fold>
 }
