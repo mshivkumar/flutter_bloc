@@ -11,6 +11,8 @@ import '../todo_search_cubit/todo_search_cubit.dart';
 part 'filtered_todos_state.dart';
 
 class FilteredTodosCubit extends Cubit<FilteredTodosState> {
+  List<Todo> initialTodosList;
+
   final TodoFilterCubit todoFilterCubit;
   final TodoSearchCubit todoSearchCubit;
   final TodoListCubit todoListCubit;
@@ -19,11 +21,12 @@ class FilteredTodosCubit extends Cubit<FilteredTodosState> {
   late final StreamSubscription todoSearchSubscription;
   late final StreamSubscription todoListSubscription;
 
-  FilteredTodosCubit(
-      {required this.todoFilterCubit,
-      required this.todoSearchCubit,
-      required this.todoListCubit})
-      : super(FilteredTodosState.initial()) {
+  FilteredTodosCubit({
+    required this.todoFilterCubit,
+    required this.todoSearchCubit,
+    required this.todoListCubit,
+    required this.initialTodosList,
+  }) : super(FilteredTodosState(todos: initialTodosList)) {
     todoFilterSubscription =
         todoFilterCubit.stream.listen((TodoFilterState todoFilterState) {});
 
