@@ -8,7 +8,7 @@ import '../todo_list_cubit/todo_list_cubit.dart';
 part 'active_todo_count_state.dart';
 
 class ActiveTodoCountCubit extends Cubit<ActiveTodoCountState> {
-  int initialActiveTodosCount = 0;
+  int initialActiveTodosCount;
   TodoListCubit todoListCubit = TodoListCubit();
   late StreamSubscription todoListCubitStreamSubscription;
 
@@ -29,6 +29,6 @@ class ActiveTodoCountCubit extends Cubit<ActiveTodoCountState> {
   @override
   Future<void> close() async {
     todoListCubitStreamSubscription.cancel();
-    super.close();
+    return super.close();
   }
 }
