@@ -9,8 +9,8 @@ part 'todo_filter_state.dart';
 
 class TodoFilterBloc extends Bloc<TodoFilterEvent, TodoFilterState> {
   TodoFilterBloc() : super(TodoFilterState.initial()) {
-    on<FilterTodoEvent>((event, emit) {
-      emit(state.copyWith(filter: event.filter));
+    on<ChangeFilterEvent>((event, emit) {
+      emit(state.copyWith(filter: event.newFilter));
     });
   }
 }

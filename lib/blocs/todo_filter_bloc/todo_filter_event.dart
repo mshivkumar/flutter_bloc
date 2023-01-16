@@ -7,18 +7,18 @@ abstract class TodoFilterEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class FilterTodoEvent extends TodoFilterEvent {
-  final Filter filter;
+class ChangeFilterEvent extends TodoFilterEvent {
+  final Filter newFilter;
 
-  const FilterTodoEvent({
-    required this.filter,
+  const ChangeFilterEvent({
+    required this.newFilter,
   });
 
   @override
   String toString() {
-    return 'FilterTodoEvent{filter: $filter}';
+    return 'FilterTodoEvent{filter: $newFilter}';
   }
 
   @override
-  List<Object> get props => [filter];
+  List<Object> get props => [newFilter];
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:testapp/cubits/active_todo_count_cubit/active_todo_count_cubit.dart';
-import 'package:testapp/cubits/filtered_todos_cubit/filtered_todos_cubit.dart';
-import 'package:testapp/cubits/todo_filter_cubit/todo_filter_cubit.dart';
-import 'package:testapp/cubits/todo_list_cubit/todo_list_cubit.dart';
-import 'package:testapp/cubits/todo_search_cubit/todo_search_cubit.dart';
+import 'package:testapp/blocs/todo_search_bloc/todo_search_bloc.dart';
 import 'package:testapp/screens/todo_home_page.dart';
+
+import 'blocs/active_todo_count_bloc/active_todo_count_bloc.dart';
+import 'blocs/filtered_todos_bloc/filtered_todos_bloc.dart';
+import 'blocs/todo_filter_bloc/todo_filter_bloc.dart';
+import 'blocs/todo_list_bloc/todo_list_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,19 +20,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context) => TodoSearchCubit()),
-        BlocProvider(create: (context) => TodoFilterCubit()),
-        BlocProvider(create: (context) => TodoListCubit()),
+        BlocProvider(create: (context) => TodoSearchBloc()),
+        BlocProvider(create: (context) => TodoFilterBloc()),
+        BlocProvider(create: (context) => TodoListBloc()),
         BlocProvider(
-            create: (context) => ActiveTodoCountCubit(
-              initialActiveTodosCount: context.read<TodoListCubit>().state.todos.length,
-                todoListCubit: context.read<TodoListCubit>())),
+            create: (context) => ActiveTodoCountBloc(
+              initialActiveTodosCount: context.read<TodoListBloc>().state.todos.length,
+                todoListBloc: context.read<TodoListBloc>())),
         BlocProvider(
-          create: (context) => FilteredTodosCubit(
-            initialTodosList: context.read<TodoListCubit>().state.todos,
-            todoFilterCubit: context.read<TodoFilterCubit>(),
-            todoSearchCubit: context.read<TodoSearchCubit>(),
-            todoListCubit: context.read<TodoListCubit>(),
+          create: (context) => FilteredTodosBloc(
+            initialTodosList: context.read<TodoListBloc>().state.todos,
+            todoFilterBloc: context.read<TodoFilterBloc>(),
+            todoSearchBloc: context.read<TodoSearchBloc>(),
+            todoListBloc: context.read<TodoListBloc>(),
           ),
         )
       ],

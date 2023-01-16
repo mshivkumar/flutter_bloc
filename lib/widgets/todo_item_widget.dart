@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:testapp/blocs/todo_list_bloc/todo_list_bloc.dart';
 
-import '../cubits/todo_list_cubit/todo_list_cubit.dart';
 import '../models/todo_model.dart';
 
 class TodoItemWidget extends StatefulWidget {
@@ -60,9 +60,10 @@ class _TodoItemWidgetState extends State<TodoItemWidget> {
                             error =
                                 _todoDescController.text.isEmpty ? true : false;
                             if (!error) {
-                              context.read<TodoListCubit>().editTodo(
+                              context.read<TodoListBloc>().add(EditTodoEvent(
                                   id: widget.todo.id,
-                                  newDesc: _todoDescController.text);
+                                  newDesc: _todoDescController
+                                      .text)); //.editTodo(id: widget.todo.id, newDesc: _todoDescController.text);
                               Navigator.pop(context);
                             }
                           },
@@ -78,9 +79,8 @@ class _TodoItemWidgetState extends State<TodoItemWidget> {
       leading: Checkbox(
         value: widget.todo.isCompleted,
         onChanged: (bool? value) {
-          context
-              .read<TodoListCubit>()
-              .toggleStatus(id: widget.todo.id, isCompleted: value!);
+          context.read<TodoListBloc>().add(
+              ToggleIsCompletedEvent(id: widget.todo.id, isCompleted: value!));
         },
       ),
       title: Text(

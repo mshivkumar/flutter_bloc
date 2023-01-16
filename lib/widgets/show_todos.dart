@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:testapp/widgets/todo_item_widget.dart';
 
-import '../cubits/filtered_todos_cubit/filtered_todos_cubit.dart';
-import '../cubits/todo_list_cubit/todo_list_cubit.dart';
+import '../blocs/filtered_todos_bloc/filtered_todos_bloc.dart';
+import '../blocs/todo_list_bloc/todo_list_bloc.dart';
 import '../models/todo_model.dart';
 
 class ShowTodos extends StatelessWidget {
@@ -12,7 +12,7 @@ class ShowTodos extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<Todo> filteredTodos =
-        context.watch<FilteredTodosCubit>().state.todos;
+        context.watch<FilteredTodosBloc>().state.todos;
 
     return ListView.separated(
       primary: false,
@@ -53,8 +53,8 @@ class ShowTodos extends StatelessWidget {
           },
           onDismissed: (_) {
             context
-                .read<TodoListCubit>()
-                .deleteTodo(id: filteredTodos[index].id);
+                .read<TodoListBloc>()
+                .add(DeleteTodoEvent(id: filteredTodos[index].id));
           },
         );
       },

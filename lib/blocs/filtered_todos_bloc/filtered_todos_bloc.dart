@@ -13,6 +13,8 @@ part 'filtered_todos_event.dart';
 part 'filtered_todos_state.dart';
 
 class FilteredTodosBloc extends Bloc<FilteredTodosEvent, FilteredTodosState> {
+  final List<Todo> initialTodosList;
+
   final TodoFilterBloc todoFilterBloc;
   final TodoSearchBloc todoSearchBloc;
   final TodoListBloc todoListBloc;
@@ -21,11 +23,12 @@ class FilteredTodosBloc extends Bloc<FilteredTodosEvent, FilteredTodosState> {
   late final StreamSubscription todoSearchSubscription;
   late final StreamSubscription todoListSubscription;
 
-  FilteredTodosBloc(
-      {required this.todoFilterBloc,
-      required this.todoSearchBloc,
-      required this.todoListBloc})
-      : super(FilteredTodosState.initial()) {
+  FilteredTodosBloc({
+    required this.todoFilterBloc,
+    required this.todoSearchBloc,
+    required this.todoListBloc,
+    required this.initialTodosList,
+  }) : super(FilteredTodosState(todos: initialTodosList)) {
     on<SetFilteredTodosEvent>((event, emit) {
       todoFilterSubscription =
           todoFilterBloc.stream.listen((TodoFilterState todoFilterState) {

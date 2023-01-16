@@ -11,12 +11,14 @@ part 'active_todo_count_state.dart';
 
 class ActiveTodoCountBloc
     extends Bloc<ActiveTodoCountEvent, ActiveTodoCountState> {
+  final int initialActiveTodosCount;
   final TodoListBloc todoListBloc;
 
   late final StreamSubscription todoListSubscription;
 
-  ActiveTodoCountBloc({required this.todoListBloc})
-      : super(ActiveTodoCountState.initial()) {
+  ActiveTodoCountBloc(
+      {required this.todoListBloc, required this.initialActiveTodosCount})
+      : super(ActiveTodoCountState(activeTodoCount: initialActiveTodosCount)) {
     on<TodoActiveCountEvent>(
         (TodoActiveCountEvent event, Emitter<ActiveTodoCountState> emit) {
       todoListSubscription = todoListBloc.stream.listen((todoListState) {
