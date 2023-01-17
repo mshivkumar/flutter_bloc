@@ -20,7 +20,7 @@ class _CreateTodoWidgetState extends State<CreateTodoWidget> {
         decoration: const InputDecoration(labelText: 'What to do?'),
         onSubmitted: (String todoDesc) {
           if (todoDesc.trim().isNotEmpty) {
-            context.read<TodoListBloc>().add(AddTodoEvent(newDesc: todoDesc));
+            context.read<TodoListBloc>().add(AddTodoEvent(todoDesc: todoDesc));
             addTodoEditingController.clear();
           }
         });

@@ -27,7 +27,7 @@ class SearchAndFilterWidget extends StatelessWidget {
               Future.delayed(const Duration(milliseconds: 500), () {
                 context
                     .read<TodoSearchBloc>()
-                    .add(SearchTodoEvent(searchedString: newSearchTerm));
+                    .add(SetSearchTermEvent(newSearchTerm: newSearchTerm));
               });
 
               // debounce.run(() {

@@ -7,18 +7,18 @@ abstract class TodoSearchEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class SearchTodoEvent extends TodoSearchEvent {
-  final String searchedString;
+class SetSearchTermEvent extends TodoSearchEvent {
+  final String newSearchTerm;
 
-  const SearchTodoEvent({
-    required this.searchedString,
+  const SetSearchTermEvent({
+    required this.newSearchTerm,
   });
 
   @override
   String toString() {
-    return 'SearchTodoEvent{searchedString: $searchedString}';
+    return 'SetSearchTermEvent{newSearchTerm: $newSearchTerm}';
   }
 
   @override
-  List<Object> get props => [searchedString];
+  List<Object> get props => [newSearchTerm];
 }

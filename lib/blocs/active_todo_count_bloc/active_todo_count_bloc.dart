@@ -19,16 +19,18 @@ class ActiveTodoCountBloc
   ActiveTodoCountBloc(
       {required this.todoListBloc, required this.initialActiveTodosCount})
       : super(ActiveTodoCountState(activeTodoCount: initialActiveTodosCount)) {
+    todoListSubscription = todoListBloc.stream.listen((todoListState) {
+      int activeTodosCount = todoListState.todos
+          .where((todo) => !todo.isCompleted)
+          .toList()
+          .length;
+
+      add(TodoActiveCountEvent(activeTodosCount: activeTodosCount));
+    });
+
     on<TodoActiveCountEvent>(
         (TodoActiveCountEvent event, Emitter<ActiveTodoCountState> emit) {
-      todoListSubscription = todoListBloc.stream.listen((todoListState) {
-        int activeTodosCount = todoListState.todos
-            .where((todo) => !todo.isCompleted)
-            .toList()
-            .length;
-
-        emit(state.copyWith(activeTodoCount: activeTodosCount));
-      });
+      emit(state.copyWith(activeTodoCount: event.activeTodosCount));
     });
   }
 

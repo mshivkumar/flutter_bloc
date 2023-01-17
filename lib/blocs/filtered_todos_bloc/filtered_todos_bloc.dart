@@ -29,21 +29,23 @@ class FilteredTodosBloc extends Bloc<FilteredTodosEvent, FilteredTodosState> {
     required this.todoListBloc,
     required this.initialTodosList,
   }) : super(FilteredTodosState(todos: initialTodosList)) {
+    todoFilterSubscription =
+        todoFilterBloc.stream.listen((TodoFilterState todoFilterState) {
+      _setFilteredTodos();
+    });
+
+    todoSearchSubscription =
+        todoSearchBloc.stream.listen((TodoSearchState todoSearchState) {
+      _setFilteredTodos();
+    });
+
+    todoListSubscription =
+        todoListBloc.stream.listen((TodoListState todoListState) {
+      _setFilteredTodos();
+    });
+
     on<SetFilteredTodosEvent>((event, emit) {
-      todoFilterSubscription =
-          todoFilterBloc.stream.listen((TodoFilterState todoFilterState) {
-        _setFilteredTodos();
-      });
-
-      todoSearchSubscription =
-          todoSearchBloc.stream.listen((TodoSearchState todoSearchState) {
-        _setFilteredTodos();
-      });
-
-      todoListSubscription =
-          todoListBloc.stream.listen((TodoListState todoListState) {
-        _setFilteredTodos();
-      });
+      emit(state.copyWith(todos: event.filteredTodos));
     });
   }
 
@@ -64,8 +66,8 @@ class FilteredTodosBloc extends Bloc<FilteredTodosEvent, FilteredTodosState> {
         _filteredTodos = todoListBloc.state.todos;
     }
 
-    if (todoSearchBloc.state.searchString.isNotEmpty) {
-      final String searchedString = todoSearchBloc.state.searchString;
+    if (todoSearchBloc.state.searchTerm.isNotEmpty) {
+      final String searchedString = todoSearchBloc.state.searchTerm;
       _filteredTodos = todoListBloc.state.todos
           .where((todo) => todo.desc
               .trim()
@@ -74,7 +76,7 @@ class FilteredTodosBloc extends Bloc<FilteredTodosEvent, FilteredTodosState> {
           .toList();
     }
 
-    emit(state.copyWith(todos: _filteredTodos));
+    add(SetFilteredTodosEvent(filteredTodos: _filteredTodos));
   }
 
   @override

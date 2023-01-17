@@ -62,7 +62,7 @@ class _TodoItemWidgetState extends State<TodoItemWidget> {
                             if (!error) {
                               context.read<TodoListBloc>().add(EditTodoEvent(
                                   id: widget.todo.id,
-                                  newDesc: _todoDescController
+                                  todoDesc: _todoDescController
                                       .text)); //.editTodo(id: widget.todo.id, newDesc: _todoDescController.text);
                               Navigator.pop(context);
                             }

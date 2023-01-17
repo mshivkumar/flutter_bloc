@@ -8,37 +8,37 @@ abstract class TodoListEvent extends Equatable {
 }
 
 class AddTodoEvent extends TodoListEvent {
-  final String newDesc;
+  final String todoDesc;
 
   const AddTodoEvent({
-    required this.newDesc,
+    required this.todoDesc,
   });
 
   @override
   String toString() {
-    return 'AddTodoEvent{desc: $newDesc}';
+    return 'AddTodoEvent{todoDesc: $todoDesc}';
   }
 
   @override
-  List<Object> get props => [newDesc];
+  List<Object> get props => [todoDesc];
 }
 
 class EditTodoEvent extends TodoListEvent {
   final String id;
-  final String newDesc;
+  final String todoDesc;
 
   const EditTodoEvent({
     required this.id,
-    required this.newDesc,
+    required this.todoDesc,
   });
 
   @override
   String toString() {
-    return 'EditTodoEvent{id: $id, newDesc: $newDesc}';
+    return 'EditTodoEvent{id: $id, todoDesc: $todoDesc}';
   }
 
   @override
-  List<Object> get props => [id, newDesc];
+  List<Object> get props => [id, todoDesc];
 }
 
 class ToggleIsCompletedEvent extends TodoListEvent {

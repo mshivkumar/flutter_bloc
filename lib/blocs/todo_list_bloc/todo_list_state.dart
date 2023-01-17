@@ -8,7 +8,11 @@ class TodoListState extends Equatable {
   });
 
   factory TodoListState.initial() {
-    return const TodoListState(todos: []);
+    return TodoListState(todos: [
+      Todo(id: '0', desc: 'Hello new Todo', isCompleted: false),
+      Todo(id: '1', desc: 'Hello old Todo', isCompleted: false),
+      Todo(id: '2', desc: 'Hello practical Todo', isCompleted: false),
+    ]);
   }
 
   @override

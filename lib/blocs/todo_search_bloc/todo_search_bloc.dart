@@ -9,8 +9,8 @@ part 'todo_search_state.dart';
 
 class TodoSearchBloc extends Bloc<TodoSearchEvent, TodoSearchState> {
   TodoSearchBloc() : super(TodoSearchState.initial()) {
-    on<SearchTodoEvent>((event, emit) {
-      emit(state.copyWith(searchString: event.searchedString));
+    on<SetSearchTermEvent>((event, emit) {
+      emit(state.copyWith(searchTerm: event.newSearchTerm));
     });
   }
 }
