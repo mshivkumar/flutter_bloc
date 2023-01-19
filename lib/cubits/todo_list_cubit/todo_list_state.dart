@@ -13,11 +13,8 @@ class TodoListState extends Equatable {
   });
 
   factory TodoListState.initial() {
-    return TodoListState(
+    return const TodoListState(
       todos: [
-        Todo(id: "1", desc: 'Do the dishes.'),
-        Todo(id: "2", desc: 'Buy book.'),
-        Todo(id: "3", desc: 'Eat dinner.'),
       ],
     );
   }

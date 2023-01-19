@@ -12,71 +12,35 @@ part 'filtered_todos_state.dart';
 
 class FilteredTodosCubit extends Cubit<FilteredTodosState> {
   final List<Todo> initialTodos;
-  final TodoFilterCubit todoFilterCubit;
-  final TodoSearchCubit todoSearchCubit;
-  final TodoListCubit todoListCubit;
 
-  late final StreamSubscription todoFilterStreamSubscription;
-  late final StreamSubscription todoSearchStreamSubscription;
-  late final StreamSubscription todoListStreamSubscription;
+  FilteredTodosCubit({required this.initialTodos})
+      : super(FilteredTodosState(filteredTodos: initialTodos));
 
-  FilteredTodosCubit(
-      {required this.initialTodos,
-      required this.todoFilterCubit,
-      required this.todoSearchCubit,
-      required this.todoListCubit})
-      : super(FilteredTodosState(filteredTodos: initialTodos)) {
-    todoFilterStreamSubscription =
-        todoFilterCubit.stream.listen((TodoFilterState todoFilterState) {
-      setFilteredTodos();
-    });
-
-    todoSearchStreamSubscription =
-        todoSearchCubit.stream.listen((TodoSearchState todoSearchState) {
-      setFilteredTodos();
-    });
-
-    todoListStreamSubscription =
-        todoListCubit.stream.listen((TodoListState todoListState) {
-      setFilteredTodos();
-    });
-  }
-
-  void setFilteredTodos() {
+  void setFilteredTodos(
+      {required Filter filter,
+      required List<Todo> todos,
+      required String searchTerm}) {
     List<Todo> _filteredTodos;
 
-    switch (todoFilterCubit.state.filter) {
+    switch (filter) {
       case Filter.active:
-        _filteredTodos = todoListCubit.state.todos
-            .where((todo) => !todo.isCompleted)
-            .toList();
+        _filteredTodos = todos.where((todo) => !todo.isCompleted).toList();
         break;
       case Filter.completed:
-        _filteredTodos = todoListCubit.state.todos
-            .where((todo) => todo.isCompleted)
-            .toList();
+        _filteredTodos = todos.where((todo) => todo.isCompleted).toList();
         break;
       case Filter.all:
-        _filteredTodos = todoListCubit.state.todos;
+        _filteredTodos = todos;
         break;
     }
 
-    if (todoSearchCubit.state.searchTerm.isNotEmpty) {
+    if (searchTerm.isNotEmpty) {
       _filteredTodos = _filteredTodos
-          .where((todo) => todo.desc
-              .toLowerCase()
-              .contains(todoSearchCubit.state.searchTerm.toLowerCase()))
+          .where((todo) =>
+              todo.desc.toLowerCase().contains(searchTerm.toLowerCase()))
           .toList();
     }
 
     emit(state.copyWith(filteredTodos: _filteredTodos));
-  }
-
-  @override
-  Future<void> close() {
-    todoFilterStreamSubscription.cancel();
-    todoSearchStreamSubscription.cancel();
-    todoListStreamSubscription.cancel();
-    return super.close();
   }
 }
