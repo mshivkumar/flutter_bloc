@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../blocs/todo_filter_bloc/todo_filter_bloc.dart';
 import '../blocs/todo_search_bloc/todo_search_bloc.dart';
+import '../blocs/todo_search_bloc/todo_search_bloc.dart';
+import '../blocs/todo_search_bloc/todo_search_bloc.dart';
 import '../models/todo_model.dart';
 
 class SearchAndFilterWidget extends StatelessWidget {
@@ -24,17 +26,21 @@ class SearchAndFilterWidget extends StatelessWidget {
           ),
           onChanged: (String? newSearchTerm) {
             if (newSearchTerm != null) {
-              Future.delayed(const Duration(milliseconds: 500), () {
-                context
-                    .read<TodoSearchBloc>()
-                    .add(SetSearchTermEvent(newSearchTerm: newSearchTerm));
-              });
+              // Future.delayed(const Duration(milliseconds: 500), () {
+              //   context
+              //       .read<TodoSearchBloc>()
+              //       .add(SetSearchTermEvent(newSearchTerm: newSearchTerm));
+              // });
 
               // debounce.run(() {
               //   context
               //       .read<TodoSearchCubit>()
               //       .setSearchTerm(newSearchTerm: newSearchTerm);
               // });
+
+              context
+                  .read<TodoSearchBloc>()
+                  .add(SetSearchTermEvent(newSearchTerm: newSearchTerm));
             }
           },
         ),
