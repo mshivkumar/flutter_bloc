@@ -30,7 +30,7 @@ class DirectGeocoding extends Equatable {
     };
   }
 
-  factory DirectGeocoding.fromMap(List<Map<String, dynamic>> json) {
+  factory DirectGeocoding.fromMap(List<dynamic> json) {
     final Map<String, dynamic> data = json[0];
     return DirectGeocoding(
       name: data['name'] as String,

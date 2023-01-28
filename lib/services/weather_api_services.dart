@@ -34,8 +34,7 @@ class WeatherApiServices {
         throw httpErrorHandler(response: response);
       }
 
-      final List<Map<String, dynamic>> responseBody =
-          json.decode(response.body);
+      final responseBody = json.decode(response.body);
 
       if (responseBody.isEmpty) {
         throw WeatherException('Cannot get the location of the $cityName');

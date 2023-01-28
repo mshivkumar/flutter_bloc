@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:testapp/repositories/weather_repository.dart';
+import 'package:testapp/services/weather_api_services.dart';
 
-class HomePage extends StatefulWidget {
+import 'package:http/http.dart' as http;
+
+class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return const SafeArea(
